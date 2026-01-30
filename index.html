@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Advanced Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --accent: #38bdf8;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --accent: #0284c7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+    }
+
+    header span {
+      color: var(--accent);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--card);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      z-index: 10;
+    }
+
+    nav a {
+      color: var(--text);
+      margin-right: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav button {
+      background: var(--accent);
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      opacity: 0.7;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button onclick="toggleTheme()">Toggle Theme</button>
+  </nav>
+
+  <header>
+    <h1>Hi, I’m <span>Your Name</span></h1>
+    <p>Senior Frontend / Full-Stack Developer</p>
+  </header>
+
+  <section id="about" class="reveal">
+    <h2>About Me</h2>
+    <p>
+      I build scalable, high-performance web applications with a strong
+      focus on clean architecture, UX, and modern JavaScript.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2 class="reveal">Projects</h2>
+    <div class="grid">
+      <div class="card reveal">
+        <h3>AI Dashboard</h3>
+        <p>Advanced analytics platform using APIs and real-time data.</p>
+      </div>
+      <div class="card reveal">
+        <h3>E-Commerce System</h3>
+        <p>High-performance shop with payments and admin panel.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Portfolio v2</h3>
+        <p>Animated portfolio with dark mode and micro-interactions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <h2>Skills</h2>
+    <p>HTML5 · CSS3 · JavaScript · React · Node · Git · REST · UX</p>
+  </section>
+
+  <section id="contact" class="reveal">
+    <h2>Contact</h2>
+    <p>Email: your@email.com</p>
+    <p>GitHub: github.com/yourname</p>
+  </section>
+
+  <footer>
+    © 2026 Your Name — All Rights Reserved
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.dataset.theme =
+        document.body.dataset.theme === "light" ? "dark" : "light";
+    }
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    function revealOnScroll() {
+      reveals.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+          el.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  </script>
+
+</body>
+</html>
